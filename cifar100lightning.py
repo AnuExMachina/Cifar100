@@ -86,4 +86,3 @@ trainer.fit(neural_network, dataset_train, dataset_test)
 
 trainer.test(neural_network, dataset_test)
 
-#overfittowal, zmniejszyc liczbe neuronow? dodac dropout

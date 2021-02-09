@@ -5,6 +5,9 @@
 
 Two models were created in order to test different approaches. The model in "cifar100lightning.py" contains the script for building a classic ConvNet while "cifar100resnet.py" contains a simple ResNet. Both models were tested for accuracy and the ResNet model performed a lot better on the test dataset. 
 
+![model](./img/cifar100resnet.onnx.png)
+*Computational graph*
+
 ## Technologies
 * Python - version 3.8.3
 * Numpy - version 1.18.5
