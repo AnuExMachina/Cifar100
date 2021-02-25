@@ -5,12 +5,10 @@ import numpy as np
 import pickle
 from sklearn.metrics import accuracy_score
 
-
 def unpickle(file):
     with open(file, 'rb') as fo:
         dict = pickle.load(fo, encoding='bytes')
     return dict
-
 
 train = unpickle('data/train')
 X_train = train[b'data']
@@ -19,8 +17,6 @@ X_train = X_train/255
 X_train = torch.from_numpy(X_train.astype('float32'))
 y_train = train[b'fine_labels']
 y_train = torch.tensor(y_train)
-
-
 
 test = unpickle('data/test')
 X_test = test[b'data']
@@ -34,6 +30,7 @@ dataset_train = torch.utils.data.TensorDataset(X_train, y_train)
 dataset_train = torch.utils.data.DataLoader(dataset_train, batch_size=128, shuffle=True, num_workers=0)
 
 class NeuralNetwork(nn.Module):
+
     def __init__(self):
         super().__init__()
         self.conv1 = nn.Conv2d(in_channels=3, out_channels=50, kernel_size=(3, 3), padding=0)
@@ -78,5 +75,4 @@ y_pred = model(X_test)
 y_pred = torch.exp(y_pred)
 y_pred = torch.argmax(y_pred, dim=1)
 y_pred.shape
-        
 accuracy_score(y_test.detach().numpy(), y_pred.detach().numpy())
